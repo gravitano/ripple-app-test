@@ -1,86 +1,64 @@
-import {Counter} from './components/Counter.ripple';
-import {SimpleTodoList} from './components/SimpleTodoList.ripple';
-import {SimpleContactForm} from './components/SimpleContactForm.ripple';
-import {SimpleUserList} from './components/SimpleUserList.ripple';
+import { Counter } from './components/Counter.ripple';
+
+import { SimpleTodoList } from './components/SimpleTodoList.ripple';
+
+import { SimpleContactForm } from './components/SimpleContactForm.ripple';
+
+import { SimpleUserList } from './components/SimpleUserList.ripple';
 
 export component App() {
-    let $activeTab = 'counter';
+	let $activeTab = 'counter';
 
-    const setActiveTab = (tab) => {
-        $activeTab = tab;
-    };
+	const setActiveTab = tab => {
+		$activeTab = tab;
+	};
 
 	<div class='min-h-screen bg-gray-100'>
-        <header class='bg-white shadow-md'>
-            <div class='max-w-6xl mx-auto px-4 py-4'>
-                <h1 class='text-3xl font-bold text-gray-800 text-center'>{'Ripple Framework Test App'}</h1>
-                <p class='text-gray-600 text-center mt-2'>{'Testing various features and components'}</p>
-            </div>
-        </header>
-
-        <nav class='bg-white border-b border-gray-200'>
-            <div class='max-w-6xl mx-auto px-4'>
-                <div class='flex justify-center space-x-1'>
-                    <button 
-                        onClick={() => setActiveTab('counter')}
-                        class={`px-4 py-2 text-sm font-medium rounded-t-lg ${
-                            $activeTab === 'counter' 
-                                ? 'bg-blue-500 text-white' 
-                                : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
-                        }`}
-                    >
-                        {'Counter'}
-                    </button>
-                    <button 
-                        onClick={() => setActiveTab('todos')}
-                        class={`px-4 py-2 text-sm font-medium rounded-t-lg ${
-                            $activeTab === 'todos' 
-                                ? 'bg-blue-500 text-white' 
-                                : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
-                        }`}
-                    >
-                        {'Simple Todos'}
-                    </button>
-                    <button 
-                        onClick={() => setActiveTab('contact')}
-                        class={`px-4 py-2 text-sm font-medium rounded-t-lg ${
-                            $activeTab === 'contact' 
-                                ? 'bg-blue-500 text-white' 
-                                : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
-                        }`}
-                    >
-                        {'Contact Form'}
-                    </button>
-                    <button 
-                        onClick={() => setActiveTab('users')}
-                        class={`px-4 py-2 text-sm font-medium rounded-t-lg ${
-                            $activeTab === 'users' 
-                                ? 'bg-blue-500 text-white' 
-                                : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
-                        }`}
-                    >
-                        {'User List'}
-                    </button>
-                </div>
-            </div>
-        </nav>
-
-        <main class='max-w-6xl mx-auto px-4 py-8'>
-            if ($activeTab === 'counter') {
-                <Counter />
-            } else if ($activeTab === 'todos') {
-                <SimpleTodoList />
-            } else if ($activeTab === 'contact') {
-                <SimpleContactForm />
-            } else if ($activeTab === 'users') {
-                <SimpleUserList />
-            }
-        </main>
-
-        <footer class='bg-white border-t border-gray-200 mt-12'>
-            <div class='max-w-6xl mx-auto px-4 py-6 text-center text-gray-600'>
-                <p>{'Built with Ripple Framework • Testing reactive state management and component composition'}</p>
-            </div>
-        </footer>
+		<header class='bg-white shadow-md'>
+			<div class='max-w-6xl mx-auto px-4 py-4'>
+				<h1 class='text-3xl font-bold text-gray-800 text-center'>{'Ripple Framework Test App'}</h1>
+				<p class='text-gray-600 text-center mt-2'>{'Testing various features and components'}</p>
+			</div>
+		</header>
+		<nav class='bg-white border-b border-gray-200'>
+			<div class='max-w-6xl mx-auto px-4'>
+				<div class='flex justify-center space-x-1'>
+					<button
+						onClick={() => setActiveTab('counter')}
+						class={`px-4 py-2 text-sm font-medium rounded-t-lg ${$activeTab === 'counter' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'}`}
+					>{'Counter'}</button>
+					<button
+						onClick={() => setActiveTab('todos')}
+						class={`px-4 py-2 text-sm font-medium rounded-t-lg ${$activeTab === 'todos' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'}`}
+					>{'Simple Todos'}</button>
+					<button
+						onClick={() => setActiveTab('contact')}
+						class={`px-4 py-2 text-sm font-medium rounded-t-lg ${$activeTab === 'contact' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'}`}
+					>{'Contact Form'}</button>
+					<button
+						onClick={() => setActiveTab('users')}
+						class={`px-4 py-2 text-sm font-medium rounded-t-lg ${$activeTab === 'users' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'}`}
+					>{'User List'}</button>
+				</div>
+			</div>
+		</nav>
+		<main class='max-w-6xl mx-auto px-4 py-8'>
+			if ($activeTab === 'counter') {
+				<Counter />
+			} else if ($activeTab === 'todos') {
+				<SimpleTodoList />
+			} else if ($activeTab === 'contact') {
+				<SimpleContactForm />
+			} else if ($activeTab === 'users') {
+				<SimpleUserList />
+			}
+		</main>
+		<footer class='bg-white border-t border-gray-200 mt-12'>
+			<div class='max-w-6xl mx-auto px-4 py-6 text-center text-gray-600'>
+				<p>
+					{'Built with Ripple Framework • Testing reactive state management and component composition'}
+				</p>
+			</div>
+		</footer>
 	</div>
 }
