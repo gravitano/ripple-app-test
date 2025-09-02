@@ -1,0 +1,131 @@
+import {effect, array} from 'ripple'
+
+export component TodoList() {
+    const $todos = array();
+    let $newTodo = '';
+    let $filter = 'all';
+
+    const addTodo = () => {
+        if ($newTodo.trim()) {
+            $todos.push({
+                id: Date.now(),
+                text: $newTodo.trim(),
+                completed: false
+            });
+            $newTodo = '';
+        }
+    };
+
+    const toggleTodo = (id) => {
+        const todoIndex = $todos.findIndex(todo => todo.id === id);
+        if (todoIndex !== -1) {
+            $todos[todoIndex].completed = !$todos[todoIndex].completed;
+        }
+    };
+
+    const deleteTodo = (id) => {
+        const todoIndex = $todos.findIndex(todo => todo.id === id);
+        if (todoIndex !== -1) {
+            $todos.splice(todoIndex, 1);
+        }
+    };
+
+    const clearCompleted = () => {
+        // Filter out completed todos
+        const activeTodos = [];
+        for (const todo of $todos) {
+            if (!todo.completed) {
+                activeTodos.push(todo);
+            }
+        }
+        // Clear array and add active todos back
+        while ($todos.$length > 0) {
+            $todos.pop();
+        }
+        activeTodos.forEach(todo => $todos.push(todo));
+    };
+
+    effect(() => {
+        console.log('Todos updated:', $todos.$length);
+    });
+
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">{'Todo List'}</h2>
+        
+        <div class="flex mb-4">
+            <input 
+                type="text" 
+                value={$newTodo}
+                onInput={(e) => $newTodo = e.target.value}
+                onKeyPress={(e) => e.key === 'Enter' && addTodo()}
+                placeholder="Add a new todo..."
+                class="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button 
+                onClick={addTodo}
+                class="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+                {'Add'}
+            </button>
+        </div>
+
+        <div class="flex mb-4 space-x-2">
+            <button 
+                onClick={() => $filter = 'all'}
+                class={`px-3 py-1 rounded text-sm ${$filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+            >
+                {'All ('}{$todos.$length}{')'}
+            </button>
+            <button 
+                onClick={() => $filter = 'active'}
+                class={`px-3 py-1 rounded text-sm ${$filter === 'active' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+            >
+                {'Active'}
+            </button>
+            <button 
+                onClick={() => $filter = 'completed'}
+                class={`px-3 py-1 rounded text-sm ${$filter === 'completed' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+            >
+                {'Completed'}
+            </button>
+        </div>
+
+        <div class="space-y-2 mb-4">
+            for (const todo of $todos) {
+                const shouldShow = $filter === 'all' || 
+                    ($filter === 'active' && !todo.completed) || 
+                    ($filter === 'completed' && todo.completed);
+                
+                if (shouldShow) {
+                    <div 
+                        key={todo.id}
+                        class={`flex items-center space-x-2 p-2 rounded ${todo.completed ? 'bg-gray-100' : 'bg-white border'}`}
+                    >
+                        <input 
+                            type="checkbox" 
+                            checked={todo.completed}
+                            onChange={() => toggleTodo(todo.id)}
+                            class="rounded"
+                        />
+                        <span class={`flex-1 ${todo.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
+                            {todo.text}
+                        </span>
+                        <button 
+                            onClick={() => deleteTodo(todo.id)}
+                            class="text-red-500 hover:text-red-700"
+                        >
+                            {'✕'}
+                        </button>
+                    </div>
+                }
+            }
+        </div>
+
+        <button 
+            onClick={clearCompleted}
+            class="w-full py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+            {'Clear Completed'}
+        </button>
+    </div>
+}
