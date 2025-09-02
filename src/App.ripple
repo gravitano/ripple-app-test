@@ -6,17 +6,13 @@ import { SimpleContactForm } from './components/SimpleContactForm.ripple';
 
 import { SimpleUserList } from './components/SimpleUserList.ripple';
 
+import { TabNavigation } from './components/TabNavigation.ripple';
+
 export component App() {
 	let $activeTab = 'counter';
 
 	const setActiveTab = tab => {
 		$activeTab = tab;
-	};
-
-	const getTabClass = tab => {
-		return $activeTab === tab 
-			? 'px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 bg-blue-500 text-white shadow-md' 
-			: 'px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 text-gray-600 hover:text-gray-800 hover:bg-gray-100';
 	};
 
 	<div class='min-h-screen bg-gray-100'>
@@ -26,28 +22,7 @@ export component App() {
 				<p class='text-gray-600 text-center mt-2'>{'Testing various features and components'}</p>
 			</div>
 		</header>
-		<nav class='bg-white border-b border-gray-200'>
-			<div class='max-w-6xl mx-auto px-4'>
-				<div class='flex justify-center space-x-1'>
-					<button
-						onClick={() => setActiveTab('counter')}
-						$class={getTabClass('counter')}
-					>{'Counter'}</button>
-					<button
-						onClick={() => setActiveTab('todos')}
-						$class={getTabClass('todos')}
-					>{'Simple Todos'}</button>
-					<button
-						onClick={() => setActiveTab('contact')}
-						$class={getTabClass('contact')}
-					>{'Contact Form'}</button>
-					<button
-						onClick={() => setActiveTab('users')}
-						$class={getTabClass('users')}
-					>{'User List'}</button>
-				</div>
-			</div>
-		</nav>
+		<TabNavigation $activeTab={$activeTab} $onTabChange={setActiveTab} />
 		<main class='max-w-6xl mx-auto px-4 py-8'>
 			if ($activeTab === 'counter') {
 				<Counter />

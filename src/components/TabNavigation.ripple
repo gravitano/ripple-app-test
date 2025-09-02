@@ -1,8 +1,8 @@
 import {effect} from 'ripple'
 
-export component TabNavigation($activeTab, $onTabChange) {
+export component TabNavigation(props: {$activeTab: string, $onTabChange: (tab: string) => void}) {
 	const getTabClass = tab => {
-		return $activeTab === tab
+		return props.$activeTab === tab
 			? 'px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 bg-blue-500 text-white shadow-md'
 			: 'px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 text-gray-600 hover:text-gray-800 hover:bg-gray-100';
 	};
@@ -11,19 +11,19 @@ export component TabNavigation($activeTab, $onTabChange) {
 		<div class='max-w-6xl mx-auto px-4'>
 			<div class='flex justify-center space-x-1'>
 				<button
-					onClick={() => $onTabChange('counter')}
+					onClick={() => props.$onTabChange('counter')}
 					$class={getTabClass('counter')}
 				>{'Counter'}</button>
 				<button
-					onClick={() => $onTabChange('todos')}
+					onClick={() => props.$onTabChange('todos')}
 					$class={getTabClass('todos')}
 				>{'Simple Todos'}</button>
 				<button
-					onClick={() => $onTabChange('contact')}
+					onClick={() => props.$onTabChange('contact')}
 					$class={getTabClass('contact')}
 				>{'Contact Form'}</button>
 				<button
-					onClick={() => $onTabChange('users')}
+					onClick={() => props.$onTabChange('users')}
 					$class={getTabClass('users')}
 				>{'User List'}</button>
 			</div>
