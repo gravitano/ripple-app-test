@@ -13,6 +13,12 @@ export component App() {
 		$activeTab = tab;
 	};
 
+	const getTabClass = tab => {
+		return $activeTab === tab 
+			? 'px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 bg-blue-500 text-white shadow-md' 
+			: 'px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 text-gray-600 hover:text-gray-800 hover:bg-gray-100';
+	};
+
 	<div class='min-h-screen bg-gray-100'>
 		<header class='bg-white shadow-md'>
 			<div class='max-w-6xl mx-auto px-4 py-4'>
@@ -25,35 +31,19 @@ export component App() {
 				<div class='flex justify-center space-x-1'>
 					<button
 						onClick={() => setActiveTab('counter')}
-						class={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 ${
-							$activeTab === 'counter' 
-								? 'bg-blue-500 text-white shadow-md' 
-								: 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
-						}`}
+						$class={getTabClass('counter')}
 					>{'Counter'}</button>
 					<button
 						onClick={() => setActiveTab('todos')}
-						class={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 ${
-							$activeTab === 'todos' 
-								? 'bg-blue-500 text-white shadow-md' 
-								: 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
-						}`}
+						$class={getTabClass('todos')}
 					>{'Simple Todos'}</button>
 					<button
 						onClick={() => setActiveTab('contact')}
-						class={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 ${
-							$activeTab === 'contact' 
-								? 'bg-blue-500 text-white shadow-md' 
-								: 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
-						}`}
+						$class={getTabClass('contact')}
 					>{'Contact Form'}</button>
 					<button
 						onClick={() => setActiveTab('users')}
-						class={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 ${
-							$activeTab === 'users' 
-								? 'bg-blue-500 text-white shadow-md' 
-								: 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
-						}`}
+						$class={getTabClass('users')}
 					>{'User List'}</button>
 				</div>
 			</div>
