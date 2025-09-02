@@ -25,19 +25,35 @@ export component App() {
 				<div class='flex justify-center space-x-1'>
 					<button
 						onClick={() => setActiveTab('counter')}
-						class={`px-4 py-2 text-sm font-medium rounded-t-lg ${$activeTab === 'counter' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'}`}
+						class={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 ${
+							$activeTab === 'counter' 
+								? 'bg-blue-500 text-white shadow-md' 
+								: 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
+						}`}
 					>{'Counter'}</button>
 					<button
 						onClick={() => setActiveTab('todos')}
-						class={`px-4 py-2 text-sm font-medium rounded-t-lg ${$activeTab === 'todos' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'}`}
+						class={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 ${
+							$activeTab === 'todos' 
+								? 'bg-blue-500 text-white shadow-md' 
+								: 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
+						}`}
 					>{'Simple Todos'}</button>
 					<button
 						onClick={() => setActiveTab('contact')}
-						class={`px-4 py-2 text-sm font-medium rounded-t-lg ${$activeTab === 'contact' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'}`}
+						class={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 ${
+							$activeTab === 'contact' 
+								? 'bg-blue-500 text-white shadow-md' 
+								: 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
+						}`}
 					>{'Contact Form'}</button>
 					<button
 						onClick={() => setActiveTab('users')}
-						class={`px-4 py-2 text-sm font-medium rounded-t-lg ${$activeTab === 'users' ? 'bg-blue-500 text-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'}`}
+						class={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors duration-200 ${
+							$activeTab === 'users' 
+								? 'bg-blue-500 text-white shadow-md' 
+								: 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
+						}`}
 					>{'User List'}</button>
 				</div>
 			</div>
